@@ -1,11 +1,9 @@
-import java.util.Date;
-
 public class Transaction {
     private String date;
     private int amount;
 
-    public Transaction(String date, int amount) {
-        this.date = date;
+    public Transaction(DateFactory dateFactory,int amount) {
+        this.date = dateFactory.getDate();
         this.amount = amount;
     }
 

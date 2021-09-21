@@ -18,9 +18,9 @@ public class Account implements AccountService{
         public void printStatement() {
                 String bankStatement = transactionHistory.generateBankStatement();
                 printer.printBankStatement(bankStatement.replaceAll("^\\S\\r\\n", ""));
-//                printer.printBankStatement("Date       || Amount || Balance\n" +
-//                        "14/01/2012 || -500   || 2500\n" +
-//                        "13/01/2012 || 2000   || 3000\n" +
-//                        "10/01/2012 || 1000   || 1000");
+        }
+
+        public void setTransactionHistory(TransactionHistory transactionHistory) {
+                this.transactionHistory = transactionHistory;
         }
 }

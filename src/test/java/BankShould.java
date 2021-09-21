@@ -27,7 +27,6 @@ public class BankShould {
         account.withdraw(500);
         account.printStatement();
 
-
         verify(mockPrinter).printBankStatement("Date||Amount||Balance\n" +
                 "14/01/2012||-500||2500\n" +
                 "13/01/2012||2000||3000\n" +
