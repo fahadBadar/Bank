@@ -8,11 +8,13 @@ public class Account implements AccountService{
         }
 
         public void deposit(int amount) {
-                transactionHistory.addDeposit(amount);
+                transactionHistory.addTransaction(amount);
         }
+
         public void withdraw(int amount) {
-                transactionHistory.addWithdrawal(amount);
+                transactionHistory.addTransaction(-amount);
         }
+
         public void printStatement() {
                 String bankStatement = transactionHistory.generateBankStatement();
                 printer.printBankStatement(bankStatement.replaceAll("^\\S\\r\\n", ""));

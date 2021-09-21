@@ -5,33 +5,17 @@ import java.util.Date;
 
 public class TransactionHistory {
     ArrayList<Transaction> transactions = new ArrayList<>();
+    DateFactory dateFactory = new DateFactory();
 
-    public void addDeposit(int amount) {
-        String date = formatDate();
-        Transaction transaction = new Transaction(date, amount);
-        transactions.add(transaction);
-    }
-
-    public void addWithdrawal(int amount) {
-        String date = formatDate();
-        Transaction transaction = new Transaction(date, -amount);
-        transactions.add(transaction);
+    public void addTransaction(int amount) {
+        transactions.add(new Transaction(dateFactory, amount));
     }
 
     public String generateBankStatement() {
-        String bankStatement = "Date||Amount||Balance\n";
-        int balance = 0;
-        for (Transaction transaction: transactions) {
-            balance += transaction.getAmount();
-            bankStatement += transaction.toString();
-            bankStatement += balance + "\n";
-        }
-        return bankStatement;
+        return new BankStatement(transactions).getBankStatement();
     }
 
-    public String formatDate() {
-        LocalDateTime date = LocalDateTime.now();
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return date.format(dateFormat);
+    public void setDateFactory(DateFactory dateFactory) {
+        this.dateFactory = dateFactory;
     }
 }
